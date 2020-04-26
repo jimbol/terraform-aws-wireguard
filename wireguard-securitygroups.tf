@@ -13,6 +13,18 @@ resource "aws_security_group" "sg_wireguard_external" {
   ingress {
     from_port   = var.wg_server_port
     to_port     = var.wg_server_port
+    protocol    = "icmp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  ingress {
+    from_port   = var.wg_server_port
+    to_port     = var.wg_server_port
+    protocol    = "icmp"
+    cidr_blocks = ["::/0"]
+  }
+  ingress {
+    from_port   = var.wg_server_port
+    to_port     = var.wg_server_port
     protocol    = "udp"
     cidr_blocks = ["0.0.0.0/0"]
   }
